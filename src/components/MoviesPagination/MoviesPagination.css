@@ -1,0 +1,24 @@
+.movies-pagination {
+  position: absolute;
+  margin: 0 auto;
+  left: 40%;
+  bottom: -47px;
+}
+
+@media (max-width: 1204px) {
+  .movies-pagination {
+    left: 36%;
+  }
+}
+
+@media (max-width: 768px) {
+  .movies-pagination {
+    left: 26%;
+  }
+}
+
+@media (max-width: 425px) {
+  .movies-pagination {
+    left: 16%;
+  }
+}
