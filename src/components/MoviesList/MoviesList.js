@@ -35,12 +35,19 @@ class MoviesList extends Component {
         .getSeachedMovies(query, page)
         .then(this.onMoviesListLoaded)
         .catch(this.onError);
+    } else {
+      this.onMoviesListLoading();
+
+      this.movieService
+        .getSeachedMovies("return", page)
+        .then(this.onMoviesListLoaded)
+        .catch(this.onError);
     }
   };
 
   handlerSearchChange = debounce((query) => {
     this.setState({
-      query: query,
+      query,
       page: 1,
     });
 
@@ -49,13 +56,13 @@ class MoviesList extends Component {
 
   changeHandler = (query) => {
     this.setState({
-      query: query,
+      query,
     });
   };
 
   changePage = (page) => {
     this.setState({
-      page: page,
+      page,
     });
     this.onRequest(page);
   };
@@ -72,7 +79,7 @@ class MoviesList extends Component {
       moviesList: [...result],
       loading: false,
       newMoviesLoading: false,
-      page: page,
+      page,
     }));
   };
 
@@ -118,7 +125,6 @@ class MoviesList extends Component {
           className="auto-complete"
           onSearch={this.handlerSearchChange}
           placeholder="Type to search..."
-          /* notFoundContent="Sorry, nothing was found on your request!" */
           value={this.state.query}
           onChange={this.changeHandler}
         />

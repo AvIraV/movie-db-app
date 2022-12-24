@@ -15,12 +15,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.onGetGenresArray();
+    this.getGenresArray();
   }
 
   movieService = new MovieService();
 
-  onGetGenresArray = async () => {
+  getGenresArray = async () => {
     await this.movieService
       .getGenres()
       .then((result) => {

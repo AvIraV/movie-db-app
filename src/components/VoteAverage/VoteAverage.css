@@ -1,0 +1,30 @@
+.vote {
+  position: absolute;
+  font-size: 12px;
+  top: 8px;
+  right: 9px;
+  border: 2px solid #E9D100;
+  border-radius: 50%;
+  padding: 6px;
+  padding-top: 8px;
+  width: 22px;
+  height: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.red {
+  border: 2px solid #E90000;
+}
+
+.orange {
+  border: 2px solid #E97E00;
+}
+
+.yellow {
+  border: 2px solid #E9D100;
+}
+
+.green {
+  border: 2px solid #66E900;
+}

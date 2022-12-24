@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Space, Spin } from "antd";
+import { Space } from "antd";
+import { FrownOutlined } from "@ant-design/icons";
 
 import MovieRate from "../MovieRate/MovieRate";
 import Genre from "../Genre/Gener";
+import VoteAverage from "../VoteAverage/VoteAverage";
 
 import "./MovieCard.css";
 
@@ -48,43 +50,28 @@ class MovieCard extends Component {
     const genres = this.renderGenres(genres_ids);
     const poster =
       poster_path === "https://image.tmdb.org/t/p/w500/null" ? (
-        <Space size="middle" style={{ margin: "0 18%" }}>
-          <Spin size="large" />
+        <Space className="img-box">
+          <FrownOutlined className="no-img" />
         </Space>
       ) : (
         <img src={poster_path} alt="poster" />
       );
-    let borderColorVoteAverage;
 
-    if (vote_average < 3) {
-      borderColorVoteAverage = { border: "2px solid #E90000" };
-    }
-    if ((vote_average >= 3) & (vote_average < 5)) {
-      borderColorVoteAverage = { border: "2px solid #E97E00" };
-    }
-    if ((vote_average >= 5) & (vote_average < 7)) {
-      borderColorVoteAverage = { border: "2px solid  #E9D100" };
-    }
-    if (vote_average >= 7) {
-      borderColorVoteAverage = { border: "2px solid  #66E900" };
-      return (
-        <div className="movie-box">
-          {poster}
-          <div className="movie-box_info">
-            <div className="title">
-              <h1>{this.textTruncate(title, 3)}</h1>
-              <span className="vote" style={borderColorVoteAverage}>
-                {vote_average.toFixed(1)}
-              </span>
-            </div>
-            <h2>{release_date}</h2>
-            {genres}
-            <p>{this.textTruncate(overview, 15)}</p>
-            <MovieRate id={id} />
+    return (
+      <div className="movie-box">
+        {poster}
+        <div className="movie-box_info">
+          <div className="title">
+            <h1>{this.textTruncate(title, 3)}</h1>
+            <VoteAverage vote_average={vote_average} />
           </div>
+          <h2>{release_date}</h2>
+          {genres}
+          <p>{this.textTruncate(overview, 20)}</p>
         </div>
-      );
-    }
+        <MovieRate id={id} />
+      </div>
+    );
   }
 }
 
